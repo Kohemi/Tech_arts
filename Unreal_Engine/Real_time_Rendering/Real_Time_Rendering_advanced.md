@@ -798,7 +798,250 @@ Each vector stores the light intensity at that location
 
 The nearest or nearest 5x5x5 vectors are then read and used to light up the dynamic model 
 
-If you need the best possible performance, set 
+If you need the best possible performance, set Indirect Lighting Cache Quality to off
 
-![image-20200228180626204](D:\Project\tech_arts\Unreal_Engine\Real_time_Rendering\upload\image-20200228180626204.png)
+![image-20200228180626204](https://raw.githubusercontent.com/Kohemi/tech_arts/master/Unreal_Engine/Real_time_Rendering/upload/image-20200228180626204.png)
 
+![Volume Light Sample Placement Scale ](D:\Project\tech_arts\Unreal_Engine\Real_time_Rendering\upload\image-20200228181949648.png)
+
+
+
+------
+
+### Result
+
+Lightmaps are generated and applied to the models and eventually blended with the base color 
+
+------
+
+### Static Lighting Performance Implications(Keep In MInd!!)
+
+1. Static Lighting always renders at the same speed
+
+2. One light or 50,000, it performs identical after baking
+
+3. Lightmap resolution affects memory and filesize, not framerate
+
+4. Bake times are increased by
+
+   a. Lightmap resolutions
+
+   b. Number of models/lights
+
+   c. Higher quality settings
+
+   d. Lights with a large attenuation radius or source radius
+
+------
+
+Use uniform lightmap sizes for best results. There is a view mode that shows these sizes("Light map density "in Optimization View Mode in View mode)
+
+(Blue and Green Color is good, Red is bad but you can adjust this on Overridden Light Map resolutions in Detail panel)
+
+![overridden_Light_Map_resolutions](D:\Project\tech_arts\Unreal_Engine\Real_time_Rendering\upload\image-20200228183755079.png)
+
+​												
+
+## 10. Dynamic Lighting and Shadows 
+
+### Dynamic LIghting
+
+#### Process Pros/Cons
+
+1. Is rendered in real time using the GBuffer
+
+2. Lights can be changed, moved, or added/removed at will 
+
+3. Does not need any special model preparation
+
+4. Especially shadows are performance heavy
+
+5. Multiple different ways to render dynamic shadows, takes time and practice to find the right type and right mix 
+
+   
+
+#### Quality Pros/Cons
+
+1. Shadows are heavy on performance, so usually render quality is reduced to compensate
+2. Does not do radiosity/global illumination for majority of consent 
+3. Dynamic light often looks shaper and more "present" than static 
+4. Dynamic shadows are fairly size-neutral
+5. Dynamic soft shadows are very hard to do well, dyn shadows often look very defined 
+
+------
+
+### Shadows
+
+Very performance intensive. Turning off shadow casting on some lights helps a lot
+
+There are 4 main types of dynamic shadows, and a number of lesser common additional ones. 
+
+1. Regular Dynamic Shadows - Used Throughout, very common
+
+2. Per Object Shadows - Stationary Light Shadows
+
+3. Cascaded Shadow Maps (CSM) - Directional light shadowing
+
+* You need a solution that only renders shadows up to a certain range or distance 
+
+4. Distance Field Shadows - Use DF info instead of tracing geometry
+
+To cast Shadows you need to know the distance between points
+
+To figure out the distance to geometry you must query this information and to extensive comparisons between results
+
+This is very slow 
+
+DF is one of multiple methods to speed up this process by making it easier to calculate distances between points
+
+It is stored in a Volume Texture, and the resolution of the texture determines how detailed the shadow is
+
+It it usually not very detailed and thus only used for distant shadows 
+
+In UE4 You can turn this on as check the button of Generate Mesh Distance Fields in project settings 
+
+------
+
+Inset Shadows - Same as Per Object Shadows. Enables higher resolution shadows on some dynamic models
+
+Contact Shadows - Fine contact shadows, useful for small details 
+
+Capsule Shadows - Simplified very cheap shadow underneath models
+
+------
+
+### Rendering
+
+Is calculated and applied using pixel shaders
+
+Dynamic lights are rendered as spheres
+
+The spheres act like a mask
+
+Anything within the sphere is to receive a pixel shader operation to blend in the dynamic light 
+
+Depth + light -> Normal map + light -> shadow map added
+
+------
+
+
+
+### Dynamic Lighting Performance Implications(Keep In mind!!)
+
+1. The cost is down to the pixel shader operations, so the more pixels the slower it is
+2. Thus the closer a light is to the camera the more pixels are affected and the slower a light gets
+3. The radius must thus be as small as possible(Keep the ranges small)
+4. Prevent excessive and regular overlap  
+
+------
+
+
+
+### Dynamic Shadows Performance Implications(Keep In mind!!)
+
+1. Turn off shadow casting if not needed
+2. The poly count of geometry affects impact of shadows. Dynamic shadow heavy environments need a lower polycount
+3. Consider Distance Fields to reduce the impact of this
+4. Distance Field works best with solid models with straight hard edged geometry
+5. Fade or toggle off shadows when far away 
+
+------
+
+
+
+### Mixing
+
+Mixing Static and Dynamic is often(but not always) the best way to go
+
+* Use static for weak and distant lighting
+* Use static to render indirect lighting near the camera
+* Use dynamic lighting on top of the static to better accentuate the shading and shadows and provide an interactive layer on top of the static result 
+
+Two more basic rules
+
+* Use static only if you need the highest possible performance
+* Use dynamic only if you need to be able to freely modify the lighting at any time
+
+
+
+## 11. Fog and Transparency
+
+### Distance Fog
+
+UE4 has two types of distance fog - Atmospheric and Exponentional and one type of local volumetric fog
+
+Distance Fog means the fog fades in the distance
+
+They are also Height Fog - meaning fades towards the sky
+
+Again this is Pixel Shader based
+
+![image-20200228234749467](D:\Project\tech_arts\Unreal_Engine\Real_time_Rendering\upload\image-20200228234749467.png)
+
+------
+
+### Transparency
+
+Deferred renderers have difficulties with transparency
+
+Therefore transparent surfaces are usually delayed until a late stage
+
+Or rendered separately in Forward then merged with the Deferred pipeline
+
+------
+
+It is difficult because you only have the GBuffers to work with, and they do not provide enough information for proper transparency 
+
+Thus transparency often looks simple and basic unless the right settings are used to divert it to Forward rendering 
+
+![image-20200228235754404](D:\Project\tech_arts\Unreal_Engine\Real_time_Rendering\upload\image-20200228235754404.png)
+
+------
+
+### Transparency Performance Implications(Keep In Mind!!)
+
+1. Transparency is expensive pixel shader count wise when rendered at the best possible quality
+2. Transparency can be very expensive when there are many layers covered the same pixels, and/or a great number of pixels is covered 
+3. Besides the pixel shader cost, there is also a challenge to sorting the render order, and this too is slow and sensitive error wise
+4. The more pixels a transparent material is expected to cover the simpler its material should be in general
+5. Transparent materials that take light into account are much more expensive than unlit translucent materials. Only apply light when absolutely needed. Fake the light any time you can 
+
+
+
+## 12. Post Processing
+
+### Basic 
+
+Are visual effects applied at the very end of the rendering process
+
+Once more relies heavily on Pixel Shaders
+
+Is compositing based and reuses the GBuffer to calculate its effects
+
+Types
+
+Light Bloom, Depth of Field/Blurring, Some types of lensflares, Light Shafts, Vignette, Tonemapping/Color correction, Exposure, Motion Blur 
+
+You can use this as put Post Process Volume on project!!
+
+### Bloom
+
+Is a multi stage process in UE4
+
+UE4 runs the process multiple times, with different widths and colors 
+
+Builds up a more compex bloom 
+
+### Color Grading
+
+There are different ways of color grading in UE4
+
+The newest and most versatile way are the build-in controls
+
+A way of color correcting in Photoshop and recording the changes to a Look Up Table - LUT
+
+The LUT saves the offsets in color and applies the same offsets in the engine - it supports 4096 different color offsets 
+
+On each pixel in the frame, you then look up where in the table that color is located 
+
+![image-20200229003009628](D:\Project\tech_arts\Unreal_Engine\Real_time_Rendering\upload\image-20200229003009628.png)
