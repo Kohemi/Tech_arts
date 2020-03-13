@@ -50,3 +50,5 @@ Some of below links have a link to certificates
 
 *  [Introduction to Living Lab Design with ICBM+AI Technology](http://www.kmooc.kr/certificates/6f638485adf84ae3b0bb0e898feac069)
 
+
+![image-20200314001449029](./images/image_20200314001449029.png)
