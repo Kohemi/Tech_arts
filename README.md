@@ -8,4 +8,6 @@ tech arts 란 과학적 기술적 배경을 알고 영상 제작에 활용할 �
 
 # 2. Who I am?
 
-https://pabi.smartlearn.io/certificates/8ecaf7d590ad458b849dc1859af41aed
+# 3. Educate & Certificates
+
+
