@@ -20,7 +20,8 @@ tech arts 란 과학적 기술적 배경을 알고 영상 제작에 활용할 �
     
 ## 3. Skills
 Programming language & Software
-<img src ="https://p7.hiclipart.com/preview/793/545/309/javascript-portable-network-graphics-logo-clip-art-computer-icons-vue-js.jpg" width = "50px"> <img src ="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png" width="50px"> <img src = "https://cdn.icon-icons.com/icons2/112/PNG/512/python_18894.png" width ="50px"> <img src ="https://i7.pngguru.com/preview/150/606/545/unreal-engine-4-game-engine-logo-computer-software-game-logo.jpg" width = "50px">
+
+<img src = "https://p7.hiclipart.com/preview/185/866/361/html-web-design-scalable-vector-graphics-world-wide-web-markup-language-html5-icon-hd.jpg" width = "70px"> <img src ="https://p7.hiclipart.com/preview/793/545/309/javascript-portable-network-graphics-logo-clip-art-computer-icons-vue-js.jpg" width = "70px"> <img src ="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png" width="70px"> <img src = "https://cdn.icon-icons.com/icons2/112/PNG/512/python_18894.png" width ="70px"> <img src ="https://i7.pngguru.com/preview/150/606/545/unreal-engine-4-game-engine-logo-computer-software-game-logo.jpg" width = "70px">
 
 Natural Language
 1. English
