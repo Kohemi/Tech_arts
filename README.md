@@ -11,14 +11,26 @@ tech arts 란 과학적 기술적 배경을 알고 영상 제작에 활용할 �
 * Name : Ko Myeong In 
 
 * Education : 
-  * <img src = "https://media-exp1.licdn.com/dms/image/C560BAQE-trHdZRUljw/company-logo_200_200/0?e=1592438400&v=beta&t=8a2a0qWETN8KLxXFqsYSXu9Oux9zuw4JEj7KJGuSFU0" width="50px"> The University of Seoul
+  * <img src = "https://media-exp1.licdn.com/dms/image/C560BAQE-trHdZRUljw/company-logo_200_200/0?e=1592438400&v=beta&t=8a2a0qWETN8KLxXFqsYSXu9Oux9zuw4JEj7KJGuSFU0" width="50px"> The University of Seoul, 
      Bachelor Degree in Chinese language and culture and  in Philosophy
-  * <img src = "https://media-exp1.licdn.com/dms/image/C4E0BAQE9jKAkhYv11A/company-logo_200_200/0?e=1592438400&v=beta&t=uM9zW18o7Uz7jPYlS0JfbLczw9Fqz-3Qjl7aILX1OQc" width ="50px"> National Chengchi University
+  * <img src = "https://media-exp1.licdn.com/dms/image/C4E0BAQE9jKAkhYv11A/company-logo_200_200/0?e=1592438400&v=beta&t=uM9zW18o7Uz7jPYlS0JfbLczw9Fqz-3Qjl7aILX1OQc" width ="50px"> National Chengchi University, 
     Global Business and Politics
-  * <img src = "https://media-exp1.licdn.com/dms/image/C4D0BAQH7CXPb4co58A/company-logo_200_200/0?e=1592438400&v=beta&t=mrnpmDR6Fop0ou7jyTvLQ1E8m2iqw6uGcMRDXezf2o0" width = "50px"> Sun Yat-sen University
+  * <img src = "https://media-exp1.licdn.com/dms/image/C4D0BAQH7CXPb4co58A/company-logo_200_200/0?e=1592438400&v=beta&t=mrnpmDR6Fop0ou7jyTvLQ1E8m2iqw6uGcMRDXezf2o0" width = "50px"> Sun Yat-sen University, 
     School of International Studies
+    
+## 3. Skills
+Programming language & Software
+<img src ="https://p7.hiclipart.com/preview/793/545/309/javascript-portable-network-graphics-logo-clip-art-computer-icons-vue-js.jpg" width = "50px"> <img src ="https://user-images.githubusercontent.com/42747200/46140125-da084900-c26d-11e8-8ea7-c45ae6306309.png" width="50px"> <img src = "https://cdn.icon-icons.com/icons2/112/PNG/512/python_18894.png" width ="50px"> <img src ="https://i7.pngguru.com/preview/150/606/545/unreal-engine-4-game-engine-logo-computer-software-game-logo.jpg" width = "50px">
 
-## 3. Educate & Certificates
+Natural Language
+1. English
+2. Chinese
+3. Japanes 
+
+Business 
+1. Marketing 
+
+## 4. Educate & Certificates
 
 Some of below links have a link to certificates 
 
