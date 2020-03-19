@@ -24,3 +24,4 @@ Event Dispatchers
 
 * We can call it from the level Blueprint 
 
+## Material parameters collection
