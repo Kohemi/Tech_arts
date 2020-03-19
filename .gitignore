@@ -151,3 +151,6 @@ lerna-debug.log
 # System Files
 .DS_Store
 Thumbs.db
+
+node_modules
+package-lock.json

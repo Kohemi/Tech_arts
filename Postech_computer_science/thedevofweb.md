@@ -516,3 +516,67 @@ do {
     final - expression
 } while(exist-condition);
 ```
+
+### 함수
+
+#### 함수(function)의 개념
+
+* 한가지 일을 수행하는 코드가 블록으로 묶여있는 것
+* 함수 호출을 통해 반복 실행이 가능
+* JavaScript를 위한 다양한 브라우저 내장 함수 제공
+* method는 객체 내부에 정의된 함수
+
+#### 사용자 정의 함수
+
+* 사용자 코드 내에 정의되어 있는 함수 
+
+#### 함수 호출
+
+* 함수 이름 뒤에 괄호를 붙여서 호출
+
+#### 익명 함수
+
+* 함수 이름이 없는 함수 
+
+#### 매개변수(parameters)
+
+* 함수 괄호 안에 넣어서 전달하는 값들 
+
+#### 유효범위(scope)
+
+* 함수 유효범위
+  * 함수를 정의하는 코드 블록 내부. 함수 유효범위 내에 정의된 변수는 해당 함수 내에서만 접근 가능
+* 전역 유효범위
+  * 모든 함수의 외부인 최상위 레벨. 전역 유효범위 내에 정의된 변수는 코드 어디서든 접근 가능.
+
+#### 함수 쪼개기
+
+```javascript
+function myBigFunction() {
+    var myValue = 1;
+    
+    subFunction1(myValue);
+    subFunction2(myValue);
+    subFucction3(myValue);
+}
+
+function subFunction1(value) {
+    console.log(value);
+}
+
+function subFunction2(value){
+    console.log(value);
+}
+function subFunction3(value){
+    console.log(value);
+}
+```
+
+#### 함수 만들기
+
+* 함수 뒤에 괄호는 함수호출연산자라고 하며, 함수를 즉시 실행시킴.
+
+#### 반환값
+
+* 함수가 완료될 때 반환하는 값 
+* return 키워드 사용하여 값을 반환함 
