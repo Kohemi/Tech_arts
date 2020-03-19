@@ -580,3 +580,74 @@ function subFunction3(value){
 
 * 함수가 완료될 때 반환하는 값 
 * return 키워드 사용하여 값을 반환함 
+
+### 이벤트(event)
+
+* 시스템에서 발생하는 동작이나 사건
+
+#### 웹 이벤트의 종류
+
+* 특정 엘리먼트를 클릭하거나 마우스를 위로 가져가는 경우
+* 키보드 키를 누르는 경우
+* 브라우저 창 크기를 조정하거나 닫는 경우
+* 웹 페이지 로딩이 완료된 경우
+* 폼 양식이 제출된 경우
+* 비디오가 재생을 시작, 일시 중지, 종료된 경우
+
+#### 이벤트 핸들러(event handler)
+
+* 이벤트가 발생할 때 실행되는 코드 블록. 이벤트 리스너(event listner)로도 불림
+
+#### 이벤트 모델
+
+* Node.js
+  * on(), once()
+  * https://nodejs.org/docs/latest-v8.x/api/http.html#http_event_connect
+* WebExtensions
+  * onMessage(), addListner()
+  * https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage#Examples
+
+#### 웹이벤트의 활용 방법
+
+* 이벤트 핸들러 속성
+  * 강력하지는 않지만 브라우저 간 호환성이 뛰어납니다.
+
+* btn.onfocus, btn.onblur
+* btn.ondblclick
+* window.onkeypress, window.onkeydown, window.onkeyup
+* btn.onmouseover, btn.onmouseout
+* 인라인 이벤트 핸들러
+  * 관리하기 힘듬, 자바스크립트는 따로 모아서 하나로 구성. 
+  * 구식이면서 나쁜습관. 가급적 사용하지 마세욧 
+* addEventListener()와 removeEventListener()
+  * 강력하지만 예전 브라우저는 지원하지 않을 수 있습니다. 
+  * 필요한 경우, 이벤트 리스너를 제거할 수 있습니다.
+  * 동일한 유형의 이벤트에 여러 리스너를 추가할 수 있습니다. 
+* removeEventListener()로 이전 등록한 이벤트 리스터를 제거할 수 있음
+* 동일한 이벤트에 대해 여러 리스너를 등록할 수 있음 
+
+#### 이벤트 객체(event object)
+
+* 이벤트 핸들러 함수의 매개변수로 전달되는 객체 
+* 여러 엘리먼트에서 동일한 핸들러를 적용할 때 매우 유용하게 사용 가능
+
+#### preventDefault()
+
+* 이벤트의 기본 동작을 막음
+
+#### 이벤트 버블링과 캡처링
+
+* 두개의 핸들러가 하나의 엘리먼트로 인해 활성화 될 때 사용되는 메커니즘 
+
+![image-20200319225711492](.\Images\image-20200319225711492.png)
+
+#### stopPropagation()
+
+* 현재 이벤트 핸들러에서 이벤트 버블링을 멈춤
+
+#### 이벤트 위임
+
+* 이벤트 버블링을 사용하여 이벤트 위임을 구현
+* 많은 자식 엘리번트 중 하나를 클릭시 특정 코드를 싱행하는 경우
+* 부모 엘리먼트에 이벤트 핸들러를 등록하여 이벤트 위임을 구현 
+* 
