@@ -581,73 +581,78 @@ function subFunction3(value){
 * 함수가 완료될 때 반환하는 값 
 * return 키워드 사용하여 값을 반환함 
 
-### 이벤트(event)
+## 비동기 자바스크립트
 
-* 시스템에서 발생하는 동작이나 사건
+### 비동기 프로그래밍
 
-#### 웹 이벤트의 종류
+* 동기 모델
+  * 순차적으로 실행되며 어떤 작업이 수행 중이면 다음 작업은 대기함
+* 비동기 모델
+  * 작업이 종료되지 않은 상태라도 대기하지 않고 다음 작업을 실행함 
 
-* 특정 엘리먼트를 클릭하거나 마우스를 위로 가져가는 경우
-* 키보드 키를 누르는 경우
-* 브라우저 창 크기를 조정하거나 닫는 경우
-* 웹 페이지 로딩이 완료된 경우
-* 폼 양식이 제출된 경우
-* 비디오가 재생을 시작, 일시 중지, 종료된 경우
+블로킹코드
 
-#### 이벤트 핸들러(event handler)
+* 제어권을 반환하지 않고 계속 실행하는 코드
+* 사용자 입력 처리와 다른 수행이 차단됨 
 
-* 이벤트가 발생할 때 실행되는 코드 블록. 이벤트 리스너(event listner)로도 불림
+스레드
 
-#### 이벤트 모델
+* 프로그램이 작업을 완료하는데 사용할 수 있는 하나의 프로세스 
+* 자바스크립트는 단일 스레드 : main thread
 
-* Node.js
-  * on(), once()
-  * https://nodejs.org/docs/latest-v8.x/api/http.html#http_event_connect
-* WebExtensions
-  * onMessage(), addListner()
-  * https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/runtime/onMessage#Examples
+```
+Task A --> Task B --> Task C
 
-#### 웹이벤트의 활용 방법
+Thread 1 : Task A --> Task B
+Thread 2 : Task C --> Task D
 
-* 이벤트 핸들러 속성
-  * 강력하지는 않지만 브라우저 간 호환성이 뛰어납니다.
+Main Thread : Render circles to canvas --> Display alert()
 
-* btn.onfocus, btn.onblur
-* btn.ondblclick
-* window.onkeypress, window.onkeydown, window.onkeyup
-* btn.onmouseover, btn.onmouseout
-* 인라인 이벤트 핸들러
-  * 관리하기 힘듬, 자바스크립트는 따로 모아서 하나로 구성. 
-  * 구식이면서 나쁜습관. 가급적 사용하지 마세욧 
-* addEventListener()와 removeEventListener()
-  * 강력하지만 예전 브라우저는 지원하지 않을 수 있습니다. 
-  * 필요한 경우, 이벤트 리스너를 제거할 수 있습니다.
-  * 동일한 유형의 이벤트에 여러 리스너를 추가할 수 있습니다. 
-* removeEventListener()로 이전 등록한 이벤트 리스터를 제거할 수 있음
-* 동일한 이벤트에 대해 여러 리스너를 등록할 수 있음 
+Main Thread : Task A --> Task C
+Worker thread : Expensive task B
+```
 
-#### 이벤트 객체(event object)
+비동기 코드
 
-* 이벤트 핸들러 함수의 매개변수로 전달되는 객체 
-* 여러 엘리먼트에서 동일한 핸들러를 적용할 때 매우 유용하게 사용 가능
+* 웹 워커(web worker)
+  * DOM 접근이 불가능하며 숫자 계산만 가능함.
+  * 순차 실행만 가능
 
-#### preventDefault()
+```
+Main thread : Task A --> Task B
+Main Thread : Task A --> Task B --> |Task D|
+Worker thread : Task C -----------> |      |
 
-* 이벤트의 기본 동작을 막음
+Main thread : Task A                 Task B
+	promis  : 	   |_async operation_|
+```
 
-#### 이벤트 버블링과 캡처링
+동기식 자바스크립트
 
-* 두개의 핸들러가 하나의 엘리먼트로 인해 활성화 될 때 사용되는 메커니즘 
+### 비동기 자바스크립트 
 
-![image-20200319225711492](.\Images\image-20200319225711492.png)
+* 비동기 콜백(callback)
+* 프로미스(promise)
 
-#### stopPropagation()
+비동기 콜백
 
-* 현재 이벤트 핸들러에서 이벤트 버블링을 멈춤
+* 비동기 함수의 매개변수로 넘겨주는 함수
+* 비동기 함수 실행 중이나 완료 후 호출되어 작업 진행 상황이나 완료 여부를 알려줌 
 
-#### 이벤트 위임
+프라미스
 
-* 이벤트 버블링을 사용하여 이벤트 위임을 구현
-* 많은 자식 엘리번트 중 하나를 클릭시 특정 코드를 싱행하는 경우
-* 부모 엘리먼트에 이벤트 핸들러를 등록하여 이벤트 위임을 구현 
-* 
+* 비동기 작업의 완료 또는 실패를 나타내는 객체 
+
+이벤트 큐
+
+* 비동기 작업이 저장되는 공간
+* 메인 스레드 처리 후 실행되는 큐 
+
+프라미스의 장점
+
+* 여러 개의 비동기 연산을 여러 개의 .then()메서드로 연결하여 순차 처리 가능
+* 항상 이벤트 대기열에 배치된 순서대로 호출됨
+* .catch() 블록을 이용하여 오류 처리가 쉬움.
+
+비동기 코드의 특성
+
