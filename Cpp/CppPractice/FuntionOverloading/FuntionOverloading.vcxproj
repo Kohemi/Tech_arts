@@ -151,9 +151,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DataTypeBool.cpp" />
     <ClCompile Include="FuntionOverloading.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="NameAlias.cpp" />
+    <ClCompile Include="RefSwap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CppPractice.h" />
