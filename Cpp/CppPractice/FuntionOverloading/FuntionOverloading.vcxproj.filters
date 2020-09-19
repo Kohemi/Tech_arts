@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FuntionOverloading.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -27,7 +24,10 @@
     <ClCompile Include="DataTypeBool.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RefSwap.cpp">
+    <ClCompile Include="RefReturnOne.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="200919_C++_Practice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

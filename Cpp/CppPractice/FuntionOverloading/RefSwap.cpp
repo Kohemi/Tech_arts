@@ -46,29 +46,29 @@ using namespace std;
 //Question2 변수로 불러와야 되는데, 값으로 불러오고 있기 때문에
 
 //Question3 
-void SwapPointer(int *(&num1), int *(&num2))
-{
-	int *temp = num1;
-	num1 = num2;
-	num2 = temp;
-}
-
-int main(void)
-{
-	int num1 = 5;
-	int *ptr = &num1;
-	int num2 = 10;
-	int *ptr2 = &num2;
-
-	cout << *ptr << endl;
-	cout << *ptr2 << endl;
-
-	SwapPointer(ptr, ptr2);
-
-	cout << *ptr << endl;
-	cout << *ptr2 << endl;
-	return 0; 
-	
-	
-
-}
+//void SwapPointer(int *(&num1), int *(&num2))
+//{
+//	int *temp = num1;
+//	num1 = num2;
+//	num2 = temp;
+//}
+//
+//int main(void)
+//{
+//	int num1 = 5;
+//	int *ptr = &num1;
+//	int num2 = 10;
+//	int *ptr2 = &num2;
+//
+//	cout << *ptr << endl;
+//	cout << *ptr2 << endl;
+//
+//	SwapPointer(ptr, ptr2);
+//
+//	cout << *ptr << endl;
+//	cout << *ptr2 << endl;
+//	return 0; 
+//	
+//	
+//
+//}
