@@ -30,12 +30,18 @@ void buildMesh(ofMesh& mesh, float w, float h, glm::vec3 pos) {
 void ofApp::setup(){
 
 	ofDisableArbTex();
+	ofEnableDepthTest();
 
-	buildMesh(charMesh, 0.25, 0.5, glm::vec3(0.0, 0.15, 0.0));
+	buildMesh(charMesh, 0.1, 0.2, glm::vec3(0.0, -0.2, 0.0));
+	buildMesh(backgroundMesh, 1.0, 1.0, glm::vec3(0.0, 0.0, 0.5));
+	buildMesh(cloudMesh, 0.25, 0.16, glm::vec3(-0.55, 0.0, 0.0));
 
 	alienImg.load("alien.png");
+	bgnd.load("forest.png");
+	cloudImg.load("cloud.png");
 
 	charShader.load("passthrough.vert", "alphaTest.frag");
+	cloudShader.load("passthrough.vert", "cloudAlpha.frag");
 
 }
 
@@ -50,9 +56,21 @@ void ofApp::update(){
 void ofApp::draw(){
 
 	charShader.begin();
-	charShader.setUniformTexture("greenMan", alienImg, 0);
+
+	charShader.setUniformTexture("tex", alienImg, 0);
 	charMesh.draw();
+
+	charShader.setUniformTexture("tex", bgnd, 0);
+	backgroundMesh.draw();
+
 	charShader.end();
+
+	cloudShader.begin();
+
+	cloudShader.setUniformTexture("tex", cloudImg, 0);
+	cloudMesh.draw();
+
+	cloudShader.end();
 
 }
 

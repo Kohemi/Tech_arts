@@ -21,8 +21,15 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		ofMesh backgroundMesh;
 		ofMesh charMesh;
+		ofMesh cloudMesh;
+		
 		ofShader charShader;
+		ofShader cloudShader;
+		
 		ofImage alienImg;
+		ofImage bgnd;
+		ofImage cloudImg;
 		
 };
