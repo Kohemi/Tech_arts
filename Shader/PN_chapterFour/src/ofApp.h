@@ -24,6 +24,7 @@ class ofApp : public ofBaseApp{
 		ofMesh backgroundMesh;
 		ofMesh charMesh;
 		ofMesh cloudMesh;
+		ofMesh sunMesh;
 		
 		ofShader charShader;
 		ofShader cloudShader;
@@ -31,5 +32,6 @@ class ofApp : public ofBaseApp{
 		ofImage alienImg;
 		ofImage bgnd;
 		ofImage cloudImg;
+		ofImage sunImg;
 		
 };
