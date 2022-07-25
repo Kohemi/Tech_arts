@@ -234,7 +234,7 @@ Desktop.ini
 .csettings
 
 #Igonore all files in Shader folder
-Shader
+Shader/
 !*.h
 !*.cpp
 !*.vert
