@@ -37,13 +37,14 @@ void ofApp::setup(){
 	buildMesh(cloudMesh, 0.25, 0.16, glm::vec3(-0.55, 0.0, 0.0));
 	buildMesh(sunMesh, 1.0, 1.0, glm::vec3(0.0, 0.0, 0.4));
 
-	alienImg.load("alien.png");
+	alienImg.load("walk_sheet.png");
 	bgnd.load("forest.png");
 	cloudImg.load("cloud.png");
 	sunImg.load("sun.png");
 
 	charShader.load("passthrough.vert", "alphaTest.frag");
 	cloudShader.load("passthrough.vert", "cloudAlpha.frag");
+	spriteSheetShader.load("spriteSheet.vert", "alphaTest.frag");
 
 }
 
@@ -57,13 +58,22 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 
+	static float frame = 0.0;
+	frame = (frame > 10) ? 0.0 : frame += 0.2;
+	glm::vec2 spriteSize = glm::vec2(0.28, 0.19);
+	glm::vec2 spriteFrame = glm::vec2((int)frame % 3, (int)frame / 3);
+
 	ofDisableBlendMode();
 	ofEnableDepthTest();
 
-	charShader.begin();
-
-	charShader.setUniformTexture("tex", alienImg, 0);
+	spriteSheetShader.begin();
+	spriteSheetShader.setUniform2f("size", spriteSize);
+	spriteSheetShader.setUniform2f("offset", spriteFrame);
+	spriteSheetShader.setUniformTexture("tex", alienImg,0);
 	charMesh.draw();
+	spriteSheetShader.end();
+
+	charShader.begin();
 
 	charShader.setUniformTexture("tex", bgnd, 0);
 	backgroundMesh.draw();
@@ -90,6 +100,13 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+
+	int numVerts = charMesh.getNumVertices();
+	for (int i = 0; i < numVerts; ++i)
+	{
+		charMesh.setVertex(i, 
+			charMesh.getVertex(i) + glm::vec3(0.2f, 0.0f, 0.0f));
+	}
 
 }
 
