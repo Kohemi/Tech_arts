@@ -234,11 +234,7 @@ Desktop.ini
 .csettings
 
 #Igonore all files in Shader folder
-Shader/
-!Shader/*.h
-!Shader/*.cpp
-!Shader/*.vert
-!Shader/*.frag
+!Shader
 
 #Track asset and 
 
