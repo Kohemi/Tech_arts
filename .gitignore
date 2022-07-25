@@ -235,7 +235,10 @@ Desktop.ini
 
 #Igonore all files in Shader folder
 Shader
-
+!*.h
+!*.cpp
+!*.vert
+!*.frag
 
 #Track asset and 
 
