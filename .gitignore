@@ -233,4 +233,13 @@ Desktop.ini
 # Android
 .csettings
 
+#Igonore all files in Shader folder
+Shader/
+!Shader/*.h
+!Shader/*.cpp
+!Shader/*.vert
+!Shader/*.frag
+
+#Track asset and 
+
 # End of https://www.toptal.com/developers/gitignore/api/openframeworks
