@@ -233,12 +233,14 @@ Desktop.ini
 # Android
 .csettings
 
-#Igonore all files in Shader folder
-Shader/
-!*.h
-!*.cpp
-!*.vert
-!*.frag
+#Igonore all files that only work in local files in Shader folder
+Shader/**/*.make
+Shader/**/*.rc
+Shader/**/*.user
+Shader/**/*.sln
+Shader/**/*.vcxproj
+Shader/**/*.filters
+Shader/**/*.user
 
 #Track asset and 
 
