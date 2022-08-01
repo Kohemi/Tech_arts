@@ -241,6 +241,10 @@ Shader/**/*.sln
 Shader/**/*.vcxproj
 Shader/**/*.filters
 Shader/**/*.user
+Shader/**/*.vsidx
+Shader/**/*.lock
+Shader/**/*.db
+Shader/**/*.bin
 
 #Track asset and 
 
