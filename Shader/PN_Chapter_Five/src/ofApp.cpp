@@ -49,8 +49,7 @@ void ofApp::setup()
 	sunImg.load("sun.png");
 
 	spritesheetShader.load("spritesheet.vert", "alphaTest.frag");
-	alphaTestShader.load("passthrough.vert", "alphaTest.frag");
-	cloudShader.load("cloud.vert", "cloud.frag");
+	opaqueShader.load("cloud.vert", "cloud.frag");
 }
 
 //--------------------------------------------------------------
@@ -83,6 +82,7 @@ void ofApp::draw() {
 	mat4 transformA = translationA * scaleA;
 	mat4 newMatrix = translationA * ourRotation * inverse(translationA);
 	mat4 finalMatrixA = newMatrix * transformA;
+	mat4 identity = glm::mat4();
 
 	ofDisableBlendMode();
 	ofEnableDepthTest();
@@ -96,23 +96,24 @@ void ofApp::draw() {
 
 	spritesheetShader.end();
 
-	alphaTestShader.begin();
-	alphaTestShader.setUniformTexture("tex", backgroundImg, 0);
+	opaqueShader.begin();
+	opaqueShader.setUniformMatrix4f("transform", identity);
+	opaqueShader.setUniformTexture("tex", backgroundImg, 0);
 	backgroundMesh.draw();
-	alphaTestShader.end();
+	opaqueShader.end();
 
 	ofDisableDepthTest();
 	ofEnableBlendMode(ofBlendMode::OF_BLENDMODE_ALPHA);
 
 	mat4 transformB = buildMatrix(vec3(0.4, 0.2, 0.0), 1.0f, vec3(1, 1, 1));
 
-	cloudShader.begin();
-	cloudShader.setUniformTexture("tex", cloudImg, 0);
+	opaqueShader.begin();
+	opaqueShader.setUniformTexture("tex", cloudImg, 0);
 
-	cloudShader.setUniformMatrix4f("transform", finalMatrixA);
+	opaqueShader.setUniformMatrix4f("transform", finalMatrixA);
 	cloudMesh.draw();
 
-	cloudShader.end();
+	opaqueShader.end();
 
 	//we won't render the sun mesh for this example to give us a better view of the cloud
 }

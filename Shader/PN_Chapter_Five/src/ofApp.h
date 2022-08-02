@@ -21,7 +21,7 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	ofShader cloudShader;
+	ofShader opaqueShader;
 	ofShader alphaTestShader;
 	ofShader spritesheetShader;
 
