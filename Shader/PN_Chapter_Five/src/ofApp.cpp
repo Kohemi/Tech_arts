@@ -30,7 +30,10 @@ glm::mat4 buildMatrix(glm::vec3 trans, float rot, glm::vec3 scale)
 	return translation * rotation * scaler;
 }
 
-
+glm::mat4 buildViewMatrix(CameraData cam) {
+	using namespace glm;
+	return inverse(buildMatrix(cam.position, cam.rotation, vec3(1, 1, 1)));
+}
 
 //--------------------------------------------------------------
 void ofApp::setup()
@@ -68,6 +71,8 @@ void ofApp::update()
 void ofApp::draw() {
 
 	using namespace glm;
+	cam.position = vec3(-1, 0, 0);
+	mat4 view = buildViewMatrix(cam);
 
 	static float frame = 0.0;
 	frame = (frame > 10) ? 0.0 : frame += 0.2;
@@ -88,10 +93,11 @@ void ofApp::draw() {
 	ofEnableDepthTest();
 
 	spritesheetShader.begin();
+	spritesheetShader.setUniformMatrix4f("view", view);
 	spritesheetShader.setUniform2f("size", spriteSize);
 	spritesheetShader.setUniform2f("offset", spriteFrame);
 	spritesheetShader.setUniformTexture("tex", alienImg, 0);
-	spritesheetShader.setUniform3f("translation", charPos);
+	spritesheetShader.setUniformMatrix4f("model", glm::translate(charPos));
 	charMesh.draw();
 
 	spritesheetShader.end();
@@ -109,8 +115,8 @@ void ofApp::draw() {
 
 	opaqueShader.begin();
 	opaqueShader.setUniformTexture("tex", cloudImg, 0);
-
-	opaqueShader.setUniformMatrix4f("transform", finalMatrixA);
+	opaqueShader.setUniformMatrix4f("view", view);
+	opaqueShader.setUniformMatrix4f("model", finalMatrixA);
 	cloudMesh.draw();
 
 	opaqueShader.end();

@@ -2,6 +2,11 @@
 
 #include "ofMain.h"
 
+struct CameraData {
+	glm::vec3 position;
+	float rotation;
+};
+
 class ofApp : public ofBaseApp {
 
 public:
@@ -37,4 +42,6 @@ public:
 
 	bool walkRight;
 	glm::vec3 charPos;
+
+	CameraData cam;
 };
